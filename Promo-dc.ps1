@@ -1,8 +1,4 @@
 ### Install New Domain Controller Script ###
-
-# Import the necessary PowerShell module
-Import-Module ADDSDeployment
-
 # Define DCPROMO parameters
 $installationParams = @{
 	DatabasePath            = "?F:\NTDS"         # Path to the database
@@ -23,6 +19,9 @@ $installationParams = @{
 if (-not (Get-WindowsFeature AD-Domain-Services).Installed) {
 	Install-WindowsFeature AD-Domain-Services -IncludeManagementTools
 }
+
+# Import the necessary PowerShell module
+Import-Module ADDSDeployment
 
 # Install the domain controller into an existing domain
 Install-ADDSDomainController @installationParams
